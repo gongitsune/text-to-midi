@@ -2,3 +2,6 @@ venv
 *.code-workspace
 *cache*
 dist
+.devcontainer
+compose.yml
+Dockerfile
