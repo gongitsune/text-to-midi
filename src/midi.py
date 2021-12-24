@@ -2,7 +2,6 @@ import image
 import pretty_midi as mid
 from PIL import Image
 from PIL import ImageOps
-from enum import Enum
 
 
 class MyTrack:
@@ -73,7 +72,7 @@ class ImageToMidi:
 
 
 if __name__ == "__main__":
-    img = image.img_process(Image.open("image/text.png"))
+    img = image.img_process(Image.open("TextToMidi/image/text.png"))
     midi = mid.PrettyMIDI()
     midi.instruments.append(ImageToMidi(img).to_track().build_instrument())
-    midi.write("dist/dist.mid")
+    midi.write("TextToMidi/dist/dist.mid")
