@@ -1,0 +1,21 @@
+{
+    "name": "text-to-midi",
+    "context": "..",
+    "dockerFile": "Dockerfile",
+
+    "settings": {
+        "python.pythonPath": "/usr/local/bin/python",
+        "python.linting.enabled": true,
+        "python.linting.pylintEnabled": false,
+        "python.linting.flake8Enabled": true,
+        "python.linting.mypyEnabled": true,
+        "python.formatting.provider": "black"
+    },
+
+    "extensions": [
+        "donjayamanne.githistory",
+        "eamodio.gitlens",
+        "ms-ceintl.vscode-language-pack-ja",
+        "ms-python.python"
+    ]
+}
