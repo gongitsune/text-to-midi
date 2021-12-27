@@ -67,7 +67,7 @@ class ImageToMidi:
 
         return track
 
-    def molding_code_bar(self):
+    def molding_chords_bar(self):
         pass
 
 
