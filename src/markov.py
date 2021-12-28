@@ -4,7 +4,7 @@ from typing import Deque
 import json
 import itertools
 
-from Error import MarkovException
+from error import MarkovException
 
 
 def make_model(
