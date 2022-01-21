@@ -5,7 +5,7 @@ import json
 
 
 class Scraping:
-    def get_chords(self):
+    def get_chords(self) -> None:
         chords_list: list[list[str]] = []
         page_url = "https://gakufu.gakki.me/search/?mode=list&wo??rd=AT:BiSH"
         href_list = self.get_href_list(page_url)

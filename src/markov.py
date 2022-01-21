@@ -8,8 +8,8 @@ from error import MarkovException
 
 
 def make_model(
-    item_list: list, order: int = 2, end: str = "[EOF]", start: str = "[BOS]"
-):
+    item_list: list[str], order: int = 2, end: str = "[EOF]", start: str = "[BOS]"
+) -> dict[tuple[str, ...], list[str]]:
     """Make markov model from item list
 
     Args:
@@ -19,10 +19,10 @@ def make_model(
         start (str, optional): Start statement. Defaults to "[BOS]".
 
     Returns:
-        dict[tuple, list[object]]: Markov model.
+        dict[tuple, list[str]]: Markov model.
     """
-    model: dict[tuple, list[object]] = {}
-    queue: deque[object] = deque([], order)
+    model: dict[tuple[str, ...], list[str]] = {}
+    queue: deque[str] = deque([], order)
     queue.append(start)
     for markov_value in item_list:
         if len(queue) < order:
@@ -42,12 +42,12 @@ def make_model(
 
 
 def make_result(
-    model: dict[tuple, list],
+    model: dict[tuple[str, ...], list[str]],
     num: int = 5,
     seed: str = "[BOS]",
     max_items: int = 10,
     end: str = "[EOF]",
-) -> list[object]:
+) -> list[list[str]]:
     """Make result from model.
 
     Args:
@@ -61,16 +61,16 @@ def make_result(
         MarkovException: Markov exception.
 
     Returns:
-        list[object]: Generated contents.
+        list[list]: Generated contents.
     """
-    result_list: list[object] = []
+    result_list: list[list[str]] = []
     for _ in range(num):
         key_condidates = [key for key in model if key[0] == seed]
         if not key_condidates:
             raise MarkovException("Not find keyword")
 
         markov_key = random.choice(key_condidates)
-        queue: Deque[object] = deque(list(markov_key), len(list(model.keys())[0]))
+        queue: Deque[str] = deque(list(markov_key), len(list(model.keys())[0]))
 
         result = list(markov_key)
         for _ in range(max_items - 2):

@@ -3,6 +3,12 @@ import numpy as np
 import cv2
 
 
+def normalize(img: Image.Image) -> Image.Image:
+    if img.height > 100:
+        img.thumbnail((img.width, 100))
+    return img
+
+
 def crop_image(img: Image.Image) -> Image.Image:
     """Remove margin
 
@@ -35,7 +41,7 @@ def get_edge(img: Image.Image, blur_radius: float = 0.5) -> Image.Image:
     """
     img_gray = img.convert("L")
     img_blur = img_gray.filter(ImageFilter.GaussianBlur(blur_radius))
-    med_val = np.median(img_blur)
+    med_val = float(np.median(img_blur))
     sigma = 0.33
     min_val = int(max(0, (1.0 - sigma) * med_val))
     max_val = int(max(255, (1.0 + sigma) * med_val))
@@ -52,8 +58,8 @@ def img_process(img: Image.Image) -> Image.Image:
     Returns:
         Image.Image: Processed image
     """
-    return get_edge(crop_image(img), 1)
+    return normalize(get_edge(crop_image(img), 1))
 
 
 if __name__ == "__main__":
-    img_process(Image.open("image/text.png")).save("dist/edge.png")
+    img_process(Image.open("image/map.png")).save("dist/edge.png")
