@@ -1,22 +1,23 @@
+import json
+
 import requests  # type: ignore
 from bs4 import BeautifulSoup
 from requests.models import Response  # type: ignore
-import json
 
 
 class Scraping:
     def get_chords(self) -> None:
         chords_list: list[list[str]] = []
-        page_url = "https://gakufu.gakki.me/search/?mode=list&wo??rd=AT:BiSH"
+        page_url = "https://gakufu.gakki.me/search/?mode=list&word=AT:%E3%82%B9%E3%83%94%E3%83%83%E3%83%84"
         href_list = self.get_href_list(page_url)
         for count, href in enumerate(href_list):
             print(f"{count} / {len(href_list)}", end="\r", flush=True)
-            if count == 5:
+            if count == 100:
                 break
             chords = self.extract_chords(requests.get(f"https://gakufu.gakki.me{href}"))
             chords_list.append(chords)
 
-        with open("dist/chords_data.json", "w", encoding="utf-8") as f:
+        with open("dist/chords_data.json", "a", encoding="utf-8") as f:
             json.dump(chords_list, f)
 
     def extract_chords(self, response: Response) -> list[str]:

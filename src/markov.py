@@ -1,8 +1,8 @@
-from collections import deque
-import random
-from typing import Deque
-import json
 import itertools
+import json
+import random
+from collections import deque
+from typing import Deque
 
 from error import MarkovException
 

@@ -1,6 +1,6 @@
-from PIL import Image, ImageFilter, ImageChops
-import numpy as np
 import cv2
+import numpy as np
+from PIL import Image, ImageChops, ImageFilter
 
 
 def normalize(img: Image.Image) -> Image.Image:
