@@ -91,7 +91,7 @@ class Chord:
         # Plus 1 for sharps, minus 1 for flats
         root = (
             self.ROOT_NOTE[chords_match.group(1)]
-            + {"#": 1, "b": -1, None: 0}[chords_match.group(2)]
+            + {"#": 1, "b": -1, None: 0}[chords_match.group(2)]  # noqa
         )
 
         target = chords_match.group(3)
