@@ -210,7 +210,7 @@ if __name__ == "__main__":
             and "-" not in elem  # noqa
         ]
 
-        img = image.img_process(Image.open("image/paint_line.png"))
+        img = image.img_process(Image.open("image/paint.png"))
         midi = mid.PrettyMIDI()
 
         track = (

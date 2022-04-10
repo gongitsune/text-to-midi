@@ -1,0 +1,6 @@
+mido==1.2.10
+numpy==1.22.3
+opencv-python==4.5.5.64
+Pillow==9.1.0
+pretty-midi==0.2.9
+six==1.16.0

@@ -1,3 +1,4 @@
 *.code-workspace
 *cache*
 dist
+venv
