@@ -1,4 +1,5 @@
 import json
+import os
 
 import requests  # type: ignore
 from bs4 import BeautifulSoup
@@ -6,6 +7,10 @@ from requests.models import Response  # type: ignore
 
 
 class Scraping:
+    def __init__(self) -> None:
+        if not os.path.exists("dist"):
+            os.makedirs("dist")
+
     def get_chords(self) -> None:
         chords_list: list[list[str]] = []
         page_url = "https://gakufu.gakki.me/search/?mode=list&word=AT:%E3%82%B9%E3%83%94%E3%83%83%E3%83%84"

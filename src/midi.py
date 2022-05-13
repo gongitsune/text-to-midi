@@ -201,16 +201,17 @@ if __name__ == "__main__":
         molding_data = list(itertools.chain.from_iterable(data))
         model = markov.make_model(molding_data, order=4)
         # root = random.choice(["C", "D", "E", "F", "G", "A", "B"])
+        root = "A7"
         result = [
             elem
-            for elem in markov.make_result(model, max_items=50, seed="A", num=1)[0]
+            for elem in markov.make_result(model, max_items=50, seed=root, num=1)[0]
             if elem != "[EOF]"
             and elem != "[BOF]"  # noqa
             and "on" not in elem  # noqa
             and "-" not in elem  # noqa
         ]
 
-        img = image.img_process(Image.open("image/paint.png"))
+        img = image.img_process(Image.open("image/world_map.png"))
         midi = mid.PrettyMIDI()
 
         track = (
