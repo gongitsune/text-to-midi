@@ -17,7 +17,7 @@ class Scraping:
         href_list = self.get_href_list(page_url)
         for count, href in enumerate(href_list):
             print(f"{count} / {len(href_list)}", end="\r", flush=True)
-            if count == 100:
+            if count == 20:
                 break
             chords = self.extract_chords(requests.get(f"https://gakufu.gakki.me{href}"))
             chords_list.append(chords)

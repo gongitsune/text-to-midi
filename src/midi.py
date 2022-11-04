@@ -11,6 +11,7 @@ import image
 import markov
 import util
 from music_chords import Chord
+import os
 
 
 class MyTrack:
@@ -196,12 +197,27 @@ class ImageToMidi:
 
 
 if __name__ == "__main__":
+    import sys
+    if not os.path.exists(sys.argv[1]):
+        print("😂 The specified image file was not found!!")
+        exit(0)
+    else:
+        try:
+            Image.open(sys.argv[1])
+        except:
+            print("😂 The specified image file was not found!!")
+            exit(0)
+    
+    if not os.path.exists("dist/chords_data.json"):
+        import scraping_chords
+        scraping_chords.Scraping().get_chords()
+    
     with open("dist/chords_data.json", "r") as f:
         data: list[list[str]] = json.load(f)
         molding_data = list(itertools.chain.from_iterable(data))
         model = markov.make_model(molding_data, order=4)
-        # root = random.choice(["C", "D", "E", "F", "G", "A", "B"])
-        root = "A7"
+        root = random.choice(["C", "D", "E", "F", "G", "A", "B"])
+        # root = "A7"
         result = [
             elem
             for elem in markov.make_result(model, max_items=50, seed=root, num=1)[0]
@@ -211,7 +227,7 @@ if __name__ == "__main__":
             and "-" not in elem  # noqa
         ]
 
-        img = image.img_process(Image.open("image/world_map.png"))
+        img = image.img_process(Image.open(sys.argv[1]))
         midi = mid.PrettyMIDI()
 
         track = (
